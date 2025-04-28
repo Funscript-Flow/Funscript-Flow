@@ -8,7 +8,7 @@
 
 **Technical Overview:**
 
-This uses a purely mathematical approach with no machine learning, and can make a good funscript for pretty much any source video. It’s performed well on:
+This uses a purely mathematical approach with no machine learning, and can make a pretty OK funscript for any source video. It’s performed well on:
 
 * Blurry 2005 cell phone footage from that time in the walk-in.
 * The stylings of directors with shaky hands, and unhealthy fondness for Dutch angles.
@@ -23,9 +23,13 @@ It doesn’t need any specific body part to be in frame, because, much like the 
 The process this application uses is:
 
 * Compute the optical flow map between each pair of adjacent frames.
-* For each optical flow pair, find the point of maximum absolute divergence (that is, most positive or negative). This provides a good extimation for the "Center of motion." (This is probably the most improvable part, but this worked better than PSO following the vector field lines, highest regional variance, and a couple other things I tried)
-* Once the center is computed, project all of the optical flow vectors on the vectors between their origins the center of motion, then get the mean magnitudes. This gives an approximation of how much the image is "expanding" or "contracting." (Note: The average is weighted to make sure points to the left and right of the center have the same total weight, and same for above/below. This helps to cancel out camera motion).
-* Split into scenes (detect cuts based on whether the absolute magnitude of the optical flow exceeds a threshold), integrate over time, detrend/normalize, and render to funscript. 
+* For each optical flow pair, find the point of maximum absolute divergence (that is, most positive or negative). This provides a good extimation for the "Center of motion."
+ * This is probably the most improvable part, but this worked better than PSO following the vector field lines, highest regional variance, and a couple other things I tried)
+* Once the center is computed, project all of the optical flow vectors on the vectors between their origins the center of motion, then get the mean magnitudes.
+ * This gives an approximation of how much the image is "expanding" or "contracting." 
+ * The average is weighted to make sure points to the left and right of the center have the same total weight, and same for above/below. This helps to cancel out camera motion.
+* Split into scenes (detect cuts based on whether the absolute magnitude of the optical flow exceeds a threshold)
+* Then just integrate over time (using trapezoids), detrend/normalize, reduce keyframes (only take points that are either a local max or min) and render to funscript. 
 
 **Known Limitations:**
 
