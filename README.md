@@ -1,6 +1,4 @@
-**Short Description**
-
-This is a tool for generating .funscript files for video libraries. It's fast, reasonably accurate, and works with pretty much any video type.
+Funscript Flow uses computer vision to automatically generate decent funscript files synchronized to any video. It works in batch mode, so you can just select a folder and hit "Run" (it can get through a hundred gigs per day or so, on my setup).
 
 **How to Get it**
 
