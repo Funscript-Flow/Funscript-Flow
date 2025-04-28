@@ -4,12 +4,16 @@ This is a tool for generating .funscript files for video libraries. It's fast, r
 
 **Running locally**
 
-I'll do a packaged release at some point, but to run it from souce, you'll need to install the following pip packages first:
+The easiest way is to download the binary release on the right. It's a packaged executable that should just work on Windows.
+
+To run the code, you'll need the following pip packages installed.
 
 * scipy
 * numpy
 * decord
 * opencv
+
+After that, just run the .pyw file.
 
 **Building an exe from source:**
 ```
