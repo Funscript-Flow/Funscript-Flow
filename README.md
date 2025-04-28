@@ -6,6 +6,8 @@ This is a tool for generating .funscript files for video libraries. It's fast, r
 
 The easiest way is to [download it here](https://github.com/Funscript-Flow/Funscript-Flow/releases). It's a packaged executable that should just work on Windows.
 
+**Running from Source**
+
 To run the code, you'll need the following pip packages installed.
 
 * scipy
