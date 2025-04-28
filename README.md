@@ -22,10 +22,10 @@ It doesn’t need any specific body part to be in frame, because, much like the 
 
 The process this application uses is:
 
-* Compute the optical flow map for each pair of frames.
+* Compute the optical flow map between each pair of adjacent frames.
 * For each optical flow pair, find the point of maximum absolute divergence (that is, most positive or negative). This provides a good extimation for the "Center of motion." (This is probably the most improvable part, but this worked better than PSO following the vector field lines, highest regional variance, and a couple other things I tried)
-* Once the center is computed, project all optical flow vectors on teh difference between their origin the center of motion, then sum their magnitudes. This gives an approximation of how much the objects are "expanding" or "contracting." (Note: The average is weighted to balance the X and Y axes to keep the center centered. This helps to cancel out camera motion).
-* Split into scenes (detect cuts based on whether the absolute magnitude of the optical flow exceeds a threshold), integrate, detrend/normalize, and render to funscript. 
+* Once the center is computed, project all of the optical flow vectors on the vectors between their origins the center of motion, then get the mean magnitudes. This gives an approximation of how much the image is "expanding" or "contracting." (Note: The average is weighted to make sure points to the left and right of the center have the same total weight, and same for above/below. This helps to cancel out camera motion).
+* Split into scenes (detect cuts based on whether the absolute magnitude of the optical flow exceeds a threshold), integrate over time, detrend/normalize, and render to funscript. 
 
 **Known Limitations:**
 
