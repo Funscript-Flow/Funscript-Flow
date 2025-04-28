@@ -2,9 +2,9 @@
 
 This is a tool for generating .funscript files for video libraries. It's fast, reasonably accurate, and works with pretty much any video type.
 
-**Running locally**
+**How to Get it**
 
-The easiest way is to download the binary release on the right. It's a packaged executable that should just work on Windows.
+The easiest way is to [download it here](https://github.com/Funscript-Flow/Funscript-Flow/releases). It's a packaged executable that should just work on Windows.
 
 To run the code, you'll need the following pip packages installed.
 
