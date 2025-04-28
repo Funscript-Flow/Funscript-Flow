@@ -1,3 +1,21 @@
+**Short Description**
+
+This is a tool for generating .funscript files for video libraries. It's fast, reasonably accurate, and works with pretty much any video type.
+
+**Running locally**
+
+I'll do a packaged release at some point, but to run it from souce, you'll need to install the following pip packages first:
+
+* scipy
+* numpy
+* decord
+* opencv
+
+**Building an exe from source:**
+```
+  python -m nuitka .\FunscriptFlow.pyw --standalone --enable-plugin=tk-inter --windows-disable-console --windows-icon-from-ico=icon.ico
+```
+
 **Features**
 * Completely automatic motion-tracked funscript generation for any video.
 * Easy to use — Just download it and point it at your 3-terabyte “Taxes” folder.
@@ -24,15 +42,15 @@ The process this application uses is:
 
 * Compute the optical flow map between each pair of adjacent frames.
 * For each optical flow pair, find the point of maximum absolute divergence (that is, most positive or negative). This provides a good extimation for the "Center of motion."
- * This is probably the most improvable part, but this worked better than PSO following the vector field lines, highest regional variance, and a couple other things I tried)
+    * This is probably the most improvable part, but this worked better than PSO following the vector field, highest regional variance, and a couple other things I tried)
 * Once the center is computed, project all of the optical flow vectors on the vectors between their origins the center of motion, then get the mean magnitudes.
- * This gives an approximation of how much the image is "expanding" or "contracting." 
- * The average is weighted to make sure points to the left and right of the center have the same total weight, and same for above/below. This helps to cancel out camera motion.
+    * This gives an approximation of how much the image is "expanding" or "contracting." 
+    * The average is weighted to make sure points to the left and right of the center have the same total weight, and same for above/below. This helps to cancel out camera motion.
 * Split into scenes (detect cuts based on whether the absolute magnitude of the optical flow exceeds a threshold)
-* Then just integrate over time (using trapezoids), detrend/normalize, reduce keyframes (only take points that are either a local max or min) and render to funscript. 
+* Then just integrate over time (using trapezoids), detrend/normalize, reduce to keyframes (only take points that are either a local max or min) and render to funscript. 
 
 **Known Limitations:**
 
-It’s good enough most of the time (I’ve been enjoying its output almost exclusively for a few weeks), but it’s no substitute for an expert scripter.
+It’s good enough most of the time (I’ve been enjoying its output), but it’s no substitute for an expert scripter.
 
 It can’t tell why whatever’s on screen is bouncing, so it scripts all motion (you may notice that there are no idle periods in the heatmap). In testing, this has been an advantage.
