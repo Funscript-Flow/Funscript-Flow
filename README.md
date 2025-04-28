@@ -24,7 +24,7 @@ The process this application uses is:
 
 * Compute the optical flow map for each pair of frames.
 * For each optical flow pair, find the point of maximum absolute divergence (that is, most positive or negative). This provides a good extimation for the "Center of motion." (This is probably the most improvable part, but this worked better than PSO following the vector field lines, highest regional variance, and a couple other things I tried)
-* Once the center is computed, project all optical flow vectors on teh difference between their origin the center of motion, then sum their magnitudes. This gives an approximation of how much the objects are "expanding" or "contracting."
+* Once the center is computed, project all optical flow vectors on teh difference between their origin the center of motion, then sum their magnitudes. This gives an approximation of how much the objects are "expanding" or "contracting." (Note: The average is weighted to balance the X and Y axes to keep the center centered. This helps to cancel out camera motion).
 * Split into scenes (detect cuts based on whether the absolute magnitude of the optical flow exceeds a threshold), integrate, detrend/normalize, and render to funscript. 
 
 **Known Limitations:**
