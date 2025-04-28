@@ -1,16 +1,34 @@
-## Hi there 👋
+**Features**
+* Completely automatic motion-tracked funscript generation for any video.
+* Easy to use — Just download it and point it at your 3-terabyte “Taxes” folder.
+* Runs on your computer without uploading anything anywhere.
+* Generates scripts for entire libraries, fast (usually faster than watching it, in my environment).
+* No GPU required (but the more CPU cores, the better).
+* For scripters, there’s an option to disable keyframe reduction and export the raw motion data, so you can fine-tune it yourself
 
-<!--
-**Funscript-Flow/Funscript-Flow** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**Technical Overview:**
 
-Here are some ideas to get you started:
+This uses a purely mathematical approach with no machine learning, and can make a good funscript for pretty much any source video. It’s performed well on:
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+* Blurry 2005 cell phone footage from that time in the walk-in.
+* The stylings of directors with shaky hands, and unhealthy fondness for Dutch angles.
+* The full Anime beastiary, with its wide variety of appendages.
+* Good, wholesome VR with steady cameras and simple motions.
+* Beach Volleyball (Don’t judge)
+
+It doesn’t need any specific body part to be in frame, because, much like the common velociraptor, it can only see motion (though it does correct for camera movement and figure out orientation using math).
+
+**Detailed Functionality:**
+
+The process this application uses is:
+
+Compute the optical flow map for each pair of frames.
+For each optical flow pair, find the point of maximum absolute divergence (that is, most positive or negative). This provides a good extimation for the "Center of motion." (This is probably the most improvable part, but this worked better than PSO following the vector field lines, highest regional variance, and a couple other things I tried)
+Once the center is computed, project all optical flow vectors on teh difference between their origin the center of motion, then sum their magnitudes. This gives an approximation of how much the objects are "expanding" or "contracting."
+Split into scenes (detect cuts based on whether the absolute magnitude of the optical flow exceeds a threshold), integrate, detrend/normalize, and render to funscript. 
+
+**Known Limitations:**
+
+It’s good enough most of the time (I’ve been enjoying its output almost exclusively for a few weeks), but it’s no substitute for an expert scripter.
+
+It can’t tell why whatever’s on screen is bouncing, so it scripts all motion (you may notice that there are no idle periods in the heatmap). In testing, this has been an advantage.
