@@ -12,6 +12,11 @@ Larger batch sizes will improve performance, but increase memory usage. The defa
 
 If you intend to use your computer for other tasks while this is running, you may want to reduce the number of threads so it doesn't uses your whole CPU. This defaults to the number of cores in your machine.
 
+POV Mode:
+
+By default, this uses motion analysis to find the point at which the two bodies meet, then figures out how much they are moving towards or away from each-other.
+In POV mode, it just sees how much things are moving towards or away from the bottom center point of the frame.
+This is useful when there is a stationary camera and only one actor who is mostly moving up and down, but can cause artifacts if that's not the case. When in doubt, try both and see which works better.
 
 After that, the script does a few more stages that have room for tweaking:
 
