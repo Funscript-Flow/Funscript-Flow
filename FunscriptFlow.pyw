@@ -1053,7 +1053,16 @@ class App:
         self.cancel_event.clear()
         try:
             # Open a log file in appdata
-            log_path = os.path.join(os.getenv("APPDATA"), "FunscriptFlow")
+            log_path = None
+            # Open a log file in appdata in windows, or /tmp in linux
+            if os.name == "posix":
+                log_path = "/tmp"
+            else:
+                # Windows
+                if not os.getenv("APPDATA"):
+                    messagebox.showerror("Log Error", "APPDATA environment variable not set.")
+                    return
+                log_path = os.path.join(os.getenv("APPDATA"), "FunscriptFlow")
             os.makedirs(log_path, exist_ok=True)
             log_filename = os.path.join(log_path, "run.log")
             self.log_file = open(log_filename, "w")
