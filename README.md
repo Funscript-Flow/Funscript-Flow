@@ -58,9 +58,3 @@ The process this application uses is:
 It’s good enough most of the time (I’ve been enjoying its output), but it’s no substitute for an expert scripter.
 
 It can’t tell why whatever’s on screen is bouncing, so it scripts all motion (you may notice that there are no idle periods in the heatmap). In testing, this has been an advantage.
-
-**Support:**
-
-If you feel so inclined,
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N61E7FKC)
